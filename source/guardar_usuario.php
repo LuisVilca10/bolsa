@@ -25,10 +25,12 @@
     //conexion a la DB
     //gurdamos datos en tabla usuarios
 
-    $sql = "INSERT INTO usuarios (dni,nombre,apellidos,dirección,teléfono, usuario, contrasena, id_rol) VALUES('$dni','$nombres','$apellidos','$direccion','$telefono', '$usuario', '$contraseña' , '1') ";
+    $sql = "INSERT INTO usuarios (dni,nombre,apellidos,dirección,teléfono, usuario, contrasena, id_rol) VALUES('$dni','$nombres','$apellidos','$direccion','$telefono', '$usuario', '$contraseña' , '0') ";
 
     mysqli_query($conexion,$sql) or die("Error al guardar.");
     
-    header("location: listar_usuarios.php");
+    //header("location: listar_usuarios.php");
+ // hacer una verificacion por el id_rol
+    header("location: ../index.php?userregis");
 
 ?>

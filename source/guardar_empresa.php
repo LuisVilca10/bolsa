@@ -25,10 +25,14 @@
     //conexion a la DB
     //gurdamos datos en tabla usuarios
 
-    $sql = "INSERT INTO empresa (razón_social,ruc,dirección,teléfono, correo, id_usuario) VALUES('$raso','$ruc','$dir','$telefono','$correo','$user') ";
+    $sql = "INSERT INTO empresa (razón_social,ruc,dirección,teléfono, correo, id_usuario, 'id_rol') VALUES('$raso','$ruc','$dir','$telefono','$correo','$user', '0') ";
 
     mysqli_query($conexion,$sql) or die("Error al guardar.");
-    
-    header("location: listar_empresa.php");
+    // if (condition) {
+    //     header("location: listar_empresa.php");
+    // } else {
+    //     # code...
+    // }
+    header("location: ../index.php?usuario_resgistrado");
 
 ?>

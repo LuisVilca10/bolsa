@@ -26,6 +26,7 @@ $conexion = conectar();
                             <th>Telefóno</th>
                             <th>Usuarios</th>
                             <th>Empresa</th>
+                            <th>Autorizado</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -58,8 +59,16 @@ $conexion = conectar();
                                 } else {
                                     echo "<td>No disponible</td>";
                                 }
-
-                                echo "<td>";  ?><button class="btn btn-primary" onclick="editar_sayayin('<?php echo $fila['id'] ?>')"><i class="fas fa-edit"></i>Editar</button> <button class="btn btn-danger" onclick="delete_sayayin('<?php echo $fila['id'] ?>')"> <i class="fas fa-trash"></i>Elimar</button> <?php "</td>";
+                                
+                                if ($fila["id_rol"]=='0') {
+                                    echo "<td>NO</td>";
+                                } else {
+                                    echo "<td>SI</td>";
+                                }
+                                echo "<td>";  ?><button class="btn btn-primary" onclick="editar_sayayin('<?php echo $fila['id'] ?>')"><i class="fas fa-edit"></i></button> <button class="btn btn-danger" onclick="delete_sayayin('<?php echo $fila['id'] ?>')"> <i class="fas fa-trash"></i></button> 
+                                
+                                <button class="btn btn-success" onclick="auto_sayayin('<?php echo $fila['id'] ?>')"><i class="fas fa-user"></i></button>
+                                <?php "</td>";
                                                                                                                                                                                                                                                                                                                     echo "</tr>";
                                                                                                                                                                                                                                                                                                                 }
                                                                                                                                                                                                                                                                                                                 //echo "</table>"; 
@@ -90,5 +99,11 @@ include("../includes/foot.php");
 
     function delete_sayayin(id) {
         location.href = "eliminar_usuario.php?id=" + id;
+    }
+    function auto_sayayin(id){
+        if (confirm("c")) {
+            
+        }
+        location.href = "auto_usuario.php?id=" + id;
     }
 </script>

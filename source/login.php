@@ -25,8 +25,12 @@
         $_SESSION["S_NOM"]=$fila['nombre'];
         $_SESSION["S_APE"]=$fila['apellidos'];
         $_SESSION["S_TELE"]=$fila['teléfono'];
-
-        header("Location:../index.php");
+        $_SESSION["S_ASIG"]=$fila['asignado'];
+        if ($_SESSION["S_ROL"]==0) {
+            header("Location:../index.php?noauto=1");
+        }else{
+            header("Location:../index.php");
+        }
     }else{
         header("Location: form_login.php?error=1");
         

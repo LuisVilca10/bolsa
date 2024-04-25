@@ -1,2 +1,5 @@
 "# Sistema-de-bolsa-laboral" 
 "# bolsa" 
+"# 1=admin" 
+"# 2=empresa" 
+"# 1=postu"
