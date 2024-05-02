@@ -25,7 +25,7 @@
     //conexion a la DB
     //gurdamos datos en tabla usuarios
 
-    $sql = "INSERT INTO empresa (razón_social,ruc,dirección,teléfono, correo, id_usuario, 'id_rol') VALUES('$raso','$ruc','$dir','$telefono','$correo','$user', '0') ";
+    $sql = "INSERT INTO empresa (razón_social,ruc,dirección,teléfono, correo, id_usuario, id_rol) VALUES('$raso','$ruc','$dir','$telefono','$correo','$user', '0') ";
 
     mysqli_query($conexion,$sql) or die("Error al guardar.");
     // if (condition) {
@@ -33,6 +33,6 @@
     // } else {
     //     # code...
     // }
-    header("location: ../index.php?usuario_resgistrado");
+    header("location: listar_empresa.php");
 
 ?>

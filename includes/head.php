@@ -60,7 +60,7 @@ session_start();
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="<?php echo RUTAGENERAL; ?>source/registro_usuarios.php">Registrar usuario</a>
                         <?php
-                        if (isset($_SESSION['S_ROL']) && $_SESSION['S_ROL']== 1) {
+                        if (isset($_SESSION['S_ROL']) && $_SESSION['S_ROL'] == 1) {
                         ?>
                             <a class="collapse-item" href="<?php echo RUTAGENERAL; ?>source/listar_usuarios.php">Lista de Usuarios</a>
                         <?php
@@ -73,7 +73,7 @@ session_start();
                 </div>
             </li>
             <?php
-            if (isset($_SESSION['S_ROL']) && $_SESSION['S_ROL']== 1) {
+            if (isset($_SESSION['S_ROL']) && $_SESSION['S_ROL'] == 1) {
             ?>
                 <!-- Nav Item - Pages Collapse Menu -->
                 <li class="nav-item">
@@ -85,13 +85,19 @@ session_start();
                         <div class="bg-white py-2 collapse-inner rounded">
                             <!-- <h6 class="collapse-header">Custom Components:</h6> -->
                             <?php
-                            if (isset($_SESSION['S_ROL']) == 1 && $_SESSION['S_ROL']== 1) {
+                            if (isset($_SESSION['S_ROL']) && $_SESSION['S_ROL'] == 1) {
                             ?>
                                 <a class="collapse-item" href="<?php echo RUTAGENERAL; ?>source/registrar_empresa.php">Registrar Empresa</a>
-                                <a class="collapse-item" href="<?php echo RUTAGENERAL; ?>source/listar_empresa.php">Listar Empresas</a>
                             <?php
                             }
                             ?>
+                            <?php
+                            if (isset($_SESSION['S_ROL']) && $_SESSION['S_ROL'] == 1 || $_SESSION['S_ROL'] == 2) {
+                            ?>
+                                <a class="collapse-item" href="<?php echo RUTAGENERAL; ?>source/listar_empresa.php">Listar Empresas</a>
+                            <?php
+                            }
+                            ?>                            
                         </div>
                     </div>
                 </li>
@@ -117,11 +123,17 @@ session_start();
                             if ($_SESSION['S_ROL'] == 2 || $_SESSION['S_ROL'] == 1) {
                             ?>
                                 <a class="collapse-item" href="<?php echo RUTAGENERAL; ?>source/crear_trabajo.php">Crear Oferta Laboral</a>
-                                <?php
+                            <?php
                             }
                             ?>
-                                <a class="collapse-item" href="<?php echo RUTAGENERAL; ?>source/listar_oferta.php">Listar Ofertas</a>
-                           
+                            <a class="collapse-item" href="<?php echo RUTAGENERAL; ?>source/listar_oferta.php">Listar Ofertas</a>
+                            <?php
+                            if (isset($_SESSION['S_ROL']) && $_SESSION['S_ROL'] == 2) {
+                            ?>
+                                <a class="collapse-item" href="<?php echo RUTAGENERAL; ?>source/lista_postualntes.php">Listar de Postulantes</a>
+                            <?php
+                            }
+                            ?>
                         </div>
                     </div>
                 </li>

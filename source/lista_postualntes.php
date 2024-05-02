@@ -7,9 +7,7 @@ $conexion = conectar();
 
 <!-- Begin Page Content -->
 <div class="container-fluid">
-    <h1 class="h3 mb-2 text-gray-800">Lista de <?php if ($_SESSION["S_ROL"] == 2) {
-                                                ?> tus
-        <?php  } ?> Ofertas</h1>
+    <h1 class="h3 mb-2 text-gray-800">Lista de tus Postulantes</h1>
     <!-- Inicio Zona  central del sistema  -->
     <?php
 
@@ -17,7 +15,7 @@ $conexion = conectar();
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Lista de Ofertas</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Lista de Postulantes</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -40,11 +38,6 @@ $conexion = conectar();
                     <tbody>
                         <tr>
                             <?php
-                            $iduser=$_SESSION["S_id"];
-                            $veri = "SELECT * FROM postulaciones WHERE id_user=$iduser";
-                            if (id oferta es igual a id no mostrara) {
-                                # code...
-                            }
                             $empresa = $_SESSION['S_ASIG'];
                             if ($_SESSION["S_ROL"] == 3) {
                                 $goku = "SELECT * FROM oferta_laboral";
@@ -90,7 +83,7 @@ $conexion = conectar();
                                 }
                                 ?>
                                 <?php
-                                if ($_SESSION["S_ROL"] == 3 ) {
+                                if ($_SESSION["S_ROL"] == 3) {
                                 ?>
                                     <button class="btn btn-success" onclick="postular_trabajo('<?php echo $fila['id'] ?>')">Postular</button>
                                 <?php
