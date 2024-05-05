@@ -11,7 +11,7 @@
     $apellidos = $_POST['txt_apellidos'];
     $dni = $_POST['txt_dni'];
     $telefono = $_POST['txt_teléfono'];
-    $direccion = $_POST['txt_dirección'];
+    $direccion = $_POST['txt_direccion'];
     $usuario = $_POST['txt_usuario'];
     $contraseña = $_POST['txt_contraseña'];
 
@@ -25,7 +25,7 @@
     //conexion a la DB
     //gurdamos datos en tabla usuarios
 
-    $sql = "INSERT INTO usuarios (dni,nombre,apellidos,dirección,teléfono, usuario, contrasena, id_rol) VALUES('$dni','$nombres','$apellidos','$direccion','$telefono', '$usuario', '$contraseña' , '0') ";
+    $sql = "INSERT INTO usuarios (dni,nombre,apellidos,dirección,teléfono, usuario, contrasena, id_rol, asignado) VALUES('$dni','$nombres','$apellidos','$direccion','$telefono', '$usuario', '$contraseña' , '0', '0') ";
 
     mysqli_query($conexion,$sql) or die("Error al guardar.");
     

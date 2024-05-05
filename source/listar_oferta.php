@@ -2,13 +2,18 @@
 include("../includes/head.php");
 include("../includes/conectar.php");
 $conexion = conectar();
+
 ?>
 
 <!-- Begin Page Content -->
 <div class="container-fluid">
-    <h1 class="h3 mb-2 text-gray-800">Lista de Ofertas</h1>
+    <h1 class="h3 mb-2 text-gray-800">Lista de <?php if ($_SESSION["S_ROL"] == 2) {
+                                                ?> tus
+        <?php  } ?> Ofertas</h1>
     <!-- Inicio Zona  central del sistema  -->
+    <?php
 
+    ?>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -35,7 +40,21 @@ $conexion = conectar();
                     <tbody>
                         <tr>
                             <?php
-                            $goku = "SELECT * FROM oferta_laboral";
+                            $iduser = $_SESSION["S_id"];
+                            $veri = "SELECT * FROM postulaciones";
+                            $pstu = mysqli_query($conexion, $veri);
+                            if ($pstu && mysqli_num_rows($pstu) > 0) {
+                                $list_p = mysqli_fetch_assoc($pstu);
+                            } else {
+                                $list_p = null;
+                            }
+                           
+                            $empresa = $_SESSION['S_ASIG'];
+                            if ($_SESSION["S_ROL"] == 3 || $_SESSION["S_ROL"] == 1) {
+                                $goku = "SELECT * FROM oferta_laboral";
+                            } else {
+                                $goku = "SELECT * FROM oferta_laboral WHERE id_empresa = $empresa ";
+                            }
                             $lista = mysqli_query($conexion, $goku);
                             $usuario = null;
                             //echo "<table>"; 
@@ -49,7 +68,7 @@ $conexion = conectar();
                                     $usuario = null;
                                 }
                                 echo "<tr>";
-                                echo "<td>" .  $usuario["razón_social"] . "</td>";
+                                echo "<td>" . $usuario["razón_social"] . "</td>";
                                 echo "<td>" . $fila["titulo"] . "</td>";
                                 echo "<td>" . $fila["descripción"] . "</td>";
                                 echo "<td>" . $fila["fecha_publicación"] . "</td>";
@@ -59,8 +78,32 @@ $conexion = conectar();
                                 echo "<td>" . $fila["tipo"] . "</td>";
                                 echo "<td>" . $fila["limite_postulantes"] . "</td>";
 
-                                echo "<td>";  ?><button class="btn btn-primary" onclick="editar_sayayin('<?php echo $fila['id'] ?>')"><i class="fas fa-edit"></i></button> <button class="btn btn-danger" onclick="delete_sayayin('<?php echo $fila['id'] ?>')"> <i class="fas fa-trash"></i></button>
-
+                                echo "<td>";  ?>
+                                <?php
+                                if ($_SESSION["S_ASIG"] == $fila["id_empresa"]) {
+                                ?>
+                                    <button class="btn btn-primary" onclick="editar_sayayin('<?php echo $fila['id'] ?>')"><i class="fas fa-edit"></i></button>
+                                <?php
+                                }
+                                ?>
+                                <?php
+                                if ($_SESSION["S_ASIG"] == $fila["id_empresa"]) {
+                                ?>
+                                    <button class="btn btn-danger" onclick="delete_sayayin('<?php echo $fila['id'] ?>')"> <i class="fas fa-trash"></i></button>
+                                <?php
+                                }
+                                ?>
+                                <?php
+                                if ($_SESSION["S_id"] == $list_p["id_user"]) {
+                                ?>
+                                    <button>Ya Postulastes</button>
+                                <?php
+                                } elseif ($_SESSION["S_ROL"] == 3) {
+                                ?>
+                                    <button class="btn btn-success" onclick="postular_trabajo('<?php echo $fila['id'] ?>')">Postular</button>
+                                <?php
+                                }
+                                ?>
 
                             <?php "</td>";
                                 echo "</tr>";
@@ -93,5 +136,9 @@ include("../includes/foot.php");
 
     function delete_sayayin(id) {
         location.href = "eliminar_oferta.php?id=" + id;
+    }
+
+    function postular_trabajo(id) {
+        location.href = "registrar_postulacion.php?id=" + id;
     }
 </script>

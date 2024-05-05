@@ -21,6 +21,7 @@
 
     if($numero_resultados==1){
         $fila = mysqli_fetch_assoc($resultado);
+        $_SESSION["S_id"]=$fila['id'];
         $_SESSION["S_ROL"]=$fila['id_rol'];
         $_SESSION["S_NOM"]=$fila['nombre'];
         $_SESSION["S_APE"]=$fila['apellidos'];

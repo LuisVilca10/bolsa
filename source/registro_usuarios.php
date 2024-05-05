@@ -25,7 +25,7 @@ include("../includes/head.php");
             <input type="number" name="txt_dni" class="form-control" id="inputAddress" >
         </div>
         <div class="col-12">
-            <label for="inputAddress2" class="form-label">Telefono</label>
+            <label for="inputAddress2" class="form-label">Teléfono</label>
             <input type="number" name="txt_teléfono" class="form-control" id="inputAddress2"  >
         </div>
         <div class="col-md-6">
