@@ -10,7 +10,7 @@ $fecha = date('Y-m-d H:i:s');
 
 
 
-$sql = "INSERT INTO postulaciones (id_user,id_oferta,fecha_hora_postulacion,estado_actual) VALUES('$user','$oferta','$fecha','abierto') ";
+$sql = "INSERT INTO postulaciones (id_user,id_oferta,fecha_hora_postulacion,estado_actual) VALUES('$user','$oferta','$fecha','En proceso') ";
 
 mysqli_query($conexion, $sql) or die("Error al guardar.");
 
