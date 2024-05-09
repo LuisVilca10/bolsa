@@ -40,15 +40,6 @@ $conexion = conectar();
                     <tbody>
                         <tr>
                             <?php
-                            $iduser = $_SESSION["S_id"];
-                            $veri = "SELECT * FROM postulaciones";
-                            $pstu = mysqli_query($conexion, $veri);
-                            if ($pstu && mysqli_num_rows($pstu) > 0) {
-                                $list_p = mysqli_fetch_assoc($pstu);
-                            } else {
-                                $list_p = null;
-                            }
-                           
                             $empresa = $_SESSION['S_ASIG'];
                             if ($_SESSION["S_ROL"] == 3 || $_SESSION["S_ROL"] == 1) {
                                 $goku = "SELECT * FROM oferta_laboral";
@@ -59,6 +50,7 @@ $conexion = conectar();
                             $usuario = null;
                             //echo "<table>"; 
                             while ($fila = mysqli_fetch_array($lista)) {
+
                                 $id_empresa = $fila['id_empresa'];
                                 $sql = "SELECT * FROM empresa WHERE id= $id_empresa";
                                 $resultado = mysqli_query($conexion, $sql);
@@ -66,6 +58,13 @@ $conexion = conectar();
                                     $usuario = mysqli_fetch_assoc($resultado);
                                 } else {
                                     $usuario = null;
+                                }
+                                $iduser = $_SESSION["S_id"];
+                                $veri = "SELECT id_oferta  FROM postulaciones WHERE id_user = $iduser";
+                                $pstu = mysqli_query($conexion, $veri);
+                                $ofertas_postuladas = array();
+                                while ($fila_postulada = mysqli_fetch_assoc($pstu)) {
+                                    $ofertas_postuladas[] = $fila_postulada['id_oferta'];
                                 }
                                 echo "<tr>";
                                 echo "<td>" . $usuario["razón_social"] . "</td>";
@@ -94,7 +93,8 @@ $conexion = conectar();
                                 }
                                 ?>
                                 <?php
-                                if ($_SESSION["S_id"] == $list_p["id_user"]) {
+
+                                if (in_array($fila["id"], $ofertas_postuladas)) {
                                 ?>
                                     <button>Ya Postulastes</button>
                                 <?php
