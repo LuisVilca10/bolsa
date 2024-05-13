@@ -5,6 +5,7 @@ interface Figura
     public function Dibujar();
 
     public function CalcularPerimetro();
+    
     public function dibujoreal();
 }
 
