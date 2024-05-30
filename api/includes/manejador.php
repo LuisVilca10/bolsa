@@ -18,8 +18,8 @@ class DBManejador
         $reg = mysqli_query($this->conn, $sql);
 
         $result = [];
-        while ($fila=mysqli_fetch_array($reg,MYSQLI_ASSOC)) {
-           $result [] = $fila;
+        while ($fila = mysqli_fetch_array($reg, MYSQLI_ASSOC)) {
+            $result[] = $fila;
         }
         // var_dump($result) ;
 
@@ -32,8 +32,8 @@ class DBManejador
         $reg = mysqli_query($this->conn, $sql);
 
         $result = [];
-        while ($fila=mysqli_fetch_array($reg,MYSQLI_ASSOC)) {
-           $result [] = $fila;
+        while ($fila = mysqli_fetch_array($reg, MYSQLI_ASSOC)) {
+            $result[] = $fila;
         }
         // var_dump($result) ;
 
@@ -42,8 +42,16 @@ class DBManejador
 
     public function CreateEmpresa($request)
     {
+        $sql = "INSERT INTO empresa(razón_social,dirección,ruc,teléfono,correo) values ('" . $request['razon_social'] . "','" . $request['dirección'] . "','" . $request['ruc'] . "','" . $request['teléfono'] . "','" . $request['correo'] . "')";
+        $resp = mysqli_query($this->conn, $sql);
+
+        echo $resp;
     }
     public function DeleteEmpresa($id)
     {
+        $sql = "DELETE FROM empresa WHERE id=$id";
+        $resp = mysqli_query($this->conn, $sql);
+        
+        echo $resp;
     }
 }
