@@ -19,9 +19,66 @@ if ($method == "GET") {
     $resp['error'] = false;
     $resp['message'] = "SUCCESS";
     $resp['data'] = $empresa;
-    echoResponse(200, $resp['data']);
+    echoResponse(200, $resp);
 } elseif ($method == "POST") {
+    //posibles encabezados de la solicityd
+    $headers = apache_request_headers();
 
+    if ($headers["Authorization"] == SECRET_KEY) {
+        $db = new DBManejador();
+        if (empty($_POST)) {
+            $resp['error'] = true;
+            $resp['message'] = "DATA NULL";
+            $resp['data'] = NULL;
+            echoResponse(422, $resp);
+        }
+        if (empty($_POST['razon_social']) || empty($_POST['ruc']) || empty($_POST['dirección']) || empty($_POST['teléfono']) || empty($_POST['correo'])) {
+            $resp['error'] = true;
+            $resp['message'] = "DATA INCOMPLET";
+            $resp['data'] = NULL;
+            echoResponse(422, $resp);
+        } else {
+            $empresa = $db->CreateEmpresa($_POST);
+            $resp['error'] = false;
+            $resp['message'] = "SUCCESS EMPRESA CREATE";
+            $resp['data'] = $_POST;
+            echoResponse(200, $resp);
+        }
+    } else {
+        $resp['error'] = true;
+        $resp['message'] = "ERROR 401";
+        $resp['data'] = NULL;
+        echoResponse(401, $resp);
+    }
+} elseif ($method == "DELETE") {
+    $headers = apache_request_headers();
+    $db = new DBManejador();
+    $id = $_GET['id'];
+    if ($headers["Authorization"] == SECRET_KEY && $headers["Authorizationtwo"] == SECRET_KEYTWO) {
+        if (empty($_GET['id'])) {
+            $resp['error'] = true;
+            $resp['message'] = "ID NULL";
+            $resp['data'] = NULL;
+            echoResponse(422, $resp);
+        }
+        elseif (!is_numeric($_GET['id'])|| $id <= 0) {
+            $resp['error'] = true;
+            $resp['message'] = "ID INCORECT";
+            $resp['data'] = NULL;
+            echoResponse(422, $resp);
+        } else {
+            $empresa = $db->DeleteEmpresa($id);
+            $resp['error'] = false;
+            $resp['message'] = "SUCCESS EMPRESA DELETE";
+            $resp['data'] = $id;
+            echoResponse(200, $resp);
+        }
+    } else {
+        $resp['error'] = true;
+        $resp['message'] = "ERROR 401";
+        $resp['data'] = NULL;
+        echoResponse(401, $resp);
+    }
 }
 
 function echoResponse($code, $messagey)
