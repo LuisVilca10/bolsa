@@ -1,8 +1,8 @@
 <?php
 //constantes para conectar a la DB
-define("USUARIO", "root");
-define("PASSWORD", "");
-define("HOST", "localhost");
+define("USUARIO", "user");
+define("PASSWORD", "123");
+define("HOST", "db");
 define("NOMBREBD", "sistema_laboral");
 
 //otras constantes necesarias

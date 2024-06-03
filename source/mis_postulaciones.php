@@ -1,10 +1,9 @@
-<link href="themplates/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-
 <?php
 include("../includes/head.php");
 include("../includes/conectar.php");
 $conexion = conectar();
 ?>
+<link href="themplates/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 <!-- Begin Page Content -->
 <div class="container-fluid">
     <h1 class="h3 mb-2 text-gray-800"><?php echo "Tu lista de postulaciones " . $_SESSION['S_NOM'] . " " . $_SESSION['S_APE']; ?></h1>

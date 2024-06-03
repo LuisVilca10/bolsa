@@ -1,4 +1,5 @@
 <?php
+include("../includes/head.php");
 include("../includes/conectar.php");
 
 if (isset($_GET['id'])) {
@@ -22,11 +23,6 @@ if (isset($_GET['id'])) {
 }
 
 // Más adelante en el mismo archivo, puedes utilizar la información de $usuario para mostrar un formulario de edición.
-?>
-
-
-<?php
-include("../includes/head.php");
 ?>
 
 <!-- Begin Page Content -->

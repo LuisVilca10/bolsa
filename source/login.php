@@ -26,7 +26,7 @@
         $_SESSION["S_NOM"]=$fila['nombre'];
         $_SESSION["S_APE"]=$fila['apellidos'];
         $_SESSION["S_DIREC"]=$fila['dirección'];
-        $_SESSION["S_CORREO"]=$fila['correo'];
+        // $_SESSION["S_CORREO"]=$fila['correo'];
         $_SESSION["S_TELE"]=$fila['teléfono'];
         $_SESSION["S_ASIG"]=$fila['asignado'];
         if ($_SESSION["S_ROL"]==0) {

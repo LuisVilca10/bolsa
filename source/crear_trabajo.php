@@ -1,10 +1,8 @@
-<link href="themplates/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-
 <?php
 include("../includes/head.php");
-
-
 ?>
+
+<link href="themplates/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 <!-- Begin Page Content -->
 <div class="container-fluid">
     <?php
